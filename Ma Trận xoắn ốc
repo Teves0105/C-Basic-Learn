@@ -1,0 +1,32 @@
+int main() {
+    int n;cin>>n;int a[n][n];
+    for (int i=0;i<n;i++) {
+        for (int j=0;j<n;j++) {
+            cin>>a[i][j];
+        }
+    }
+    int d = 0, i, gt = 1;
+    int hang = n - 1, cot = n - 1;
+    while(gt <= n*n){        
+        for(i = d; i <= cot; i++) {          
+            a[d][i] = gt++;    
+        }       
+        for(i = d+1; i <= hang; i++){            
+            a[i][cot] = gt++; 
+        }       
+        for(i = cot-1; i>=d && gt <= n * n; i--){         
+            a[hang][i]=gt++; 
+        }       
+        for(i = hang-1; i>d && gt <= n * n; i--){         
+            a[i][d] = gt++;
+        }       
+        d++; hang--; cot--;    
+    }
+    for (int i=0;i<n;i++) {
+        for (int j=0;j<n;j++) {
+            cout<<a[i][j]<<" ";
+        }
+        cout<<'\n';
+    }
+    return 0;
+}
